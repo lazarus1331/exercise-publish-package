@@ -25,3 +25,5 @@ jobs:
       - run: npm test
       - run: git add package-lock.json
       - run: git push --set-upstream origin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
