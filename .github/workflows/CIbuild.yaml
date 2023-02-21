@@ -29,4 +29,4 @@ jobs:
           author_name: Autobot Action
           author_email: Autobot@GitHub.com
           message: "Update package-lock.json"
-          add: "package-lock.json"
+          add: "./sample-packages/npm/package-lock.json"
