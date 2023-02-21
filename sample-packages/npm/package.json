@@ -1,6 +1,6 @@
 {
   "name": "mysampleexamplepackage",
-  "version": "v0.0.5",
+  "version": "v0.0.6",
   "description": "This is a sample npm package for Github training.",
   "homepage": "https://github.com/lazarus1331/exercise-publish-package",
   "repository": {
