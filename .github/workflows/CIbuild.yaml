@@ -24,6 +24,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      - run: git config --global user.email "Autobot@GitHub.com"
+      - run: git config --global user.name "Autobot Action"
       - run: git add package-lock.json
       - run: git commit -m "Update package-lock.json"
       - run: git push
