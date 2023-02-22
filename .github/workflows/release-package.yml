@@ -27,3 +27,24 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-gcr:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - id: import-json
+        run: |
+          content=`cat ./package-lock.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+      - run: echo "${{fromJson(steps.import-json.outputs.packageJson).version}}"
+      - run: docker build . -t ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}"
+      - run: docker tag ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}" ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:latest
+      - run: echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u "${{github.repository_owner}}" --password-stdin
+      - run: docker push ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}"
+      - run: docker push ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:latest
