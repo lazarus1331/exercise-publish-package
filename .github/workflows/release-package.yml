@@ -43,8 +43,8 @@ jobs:
           # end of optional handling for multi line json
           echo "::set-output name=packageJson::$content"
       - run: echo "${{fromJson(steps.import-json.outputs.packageJson).version}}"
-      - run: docker build . -t ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}"
-      - run: docker tag ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}" ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:latest
-      - run: echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u "${{github.repository_owner}}" --password-stdin
-      - run: docker push ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}"
-      - run: docker push ghcr.io/"${{github.repository_owner}}"/mysampleexamplepackage:latest
+      - run: docker build . -t ghcr.io/${{github.repository_owner}}/mysampleexamplepackage:${{fromJson(steps.import-json.outputs.packageJson).version}}
+      - run: docker tag ghcr.io/${{github.repository_owner}}/mysampleexamplepackage:${{fromJson(steps.import-json.outputs.packageJson).version}} ghcr.io/${{github.repository_owner}}/mysampleexamplepackage:latest
+      - run: echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u ${{github.repository_owner}} --password-stdin
+      - run: docker push ghcr.io/${{github.repository_owner}}/mysampleexamplepackage:${{fromJson(steps.import-json.outputs.packageJson).version}}
+      - run: docker push ghcr.io/${{github.repository_owner}}/mysampleexamplepackage:latest
