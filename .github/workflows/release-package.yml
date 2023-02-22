@@ -30,5 +30,4 @@ jobs:
       - run: npm ci
       - run: npm publish
         env:
-          NPM_CONFIG_REGISTRY: https://npm.pkg.github.com/
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
