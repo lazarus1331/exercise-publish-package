@@ -11,4 +11,5 @@
   }
   "publishConfig": {
     "respository": "https://npm.pkg.github.com/"
+  }
 }
