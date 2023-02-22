@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/lazarus1331/exercise-publish-package.git",
     "directory": "sample-packages/npm"
-  }
+  },
   "publishConfig": {
     "respository": "https://npm.pkg.github.com/"
   }
