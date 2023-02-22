@@ -1,13 +1,12 @@
 {
   "name": "@lazarus1331/mysampleexamplepackage",
-  "version": "v0.0.9",
+  "version": "v0.0.10",
   "description": "This is a sample npm package for Github training.",
   "main": "index.js",
   "homepage": "https://github.com/lazarus1331/exercise-publish-package",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lazarus1331/exercise-publish-package.git",
-    "directory": "sample-packages/npm"
+    "url": "https://github.com/lazarus1331/exercise-publish-package.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

@@ -9,16 +9,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-defaults:
-    run:
-      working-directory: ./sample-packages/npm/
-      
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
       - run: npm install
@@ -29,4 +25,4 @@ jobs:
         with:
           default_author: github_actions
           message: "Update package-lock.json"
-          add: "./sample-packages/npm/package-lock.json"
+          add: "package-lock.json"
