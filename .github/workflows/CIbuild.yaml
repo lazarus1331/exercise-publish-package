@@ -33,5 +33,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: import-json
-        run: cat package-lock.json
-      - run: docker build . -t lazarus1331/mysampleexamplepackage:"${{fromJson(steps.import-json).version}}"
+        run: |
+          content=`cat ./path/to/package.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+      - run: echo "${{fromJson(steps.import-json.outputs.packageJson).version}}"
+      - run: docker build . -t lazarus1331/mysampleexamplepackage:"${{fromJson(steps.import-json.outputs.packageJson).version}}"
